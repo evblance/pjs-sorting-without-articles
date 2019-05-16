@@ -1,7 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+
 body {
   background: center / cover no-repeat url(https://images.pexels.com/photos/390089/film-movie-motion-picture-390089.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260);
+  color: hsl(0, 0%, 23%);
+  font-family: -apple-system, BlinkMacSystemFont, "Quicksand", Arial, sans-serif;
   height: 100vh;
-  width: 100%;
   margin: 0;
   padding: 0;
+  position: relative;
+  width: 100%;
+}
+
+.list {
+  background: hsla(0, 0%, 39%, 0.5);
+  border: 2px solid hsla(0, 0%, 10%, 0.1);
+  box-shadow: 0 1px 10px 3px rgba(30, 30, 30, 0.15);
+  left: 50%;
+  list-style: none;
+  margin: 0;
+  padding: 50px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.list__item {
+  background: hsl(0, 0%, 92%);
+  border-bottom: 1px solid black;
+  padding: 1rem;
+  text-transform: uppercase;
+}
+
+.list__item:last-child {
+  border-color: transparent;
 }
