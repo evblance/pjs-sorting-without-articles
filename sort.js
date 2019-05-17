@@ -18,6 +18,13 @@ const MOVIES = [
   "The Experts"
 ];
 
+// Store our list of articles to look for excluding from sorting.
+const ARTICLES = ["a", "the", "an", "of"];
+
+// Programatically create a RegExp based on our ARTICLES array to use in 'unarticleising' strings in sorting
+const regExpArticlesStr = `^${ARTICLES.reduce((acc, cur) => acc += (cur + ' |'), '')}`;
+const unarticleiseRegExp = new RegExp(regExpArticlesStr, 'i');
+
 // Store our list item class as a constant
 const LIST_ITEM_CLASSNAME = 'list__item';
 
