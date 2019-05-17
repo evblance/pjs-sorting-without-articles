@@ -45,4 +45,23 @@ function renderList(list) {
   });
 }
 
-renderList(MOVIES);
+/**
+ * Removes an article from the beginning of a string, if present.
+ * @param {string} str The string to remove an article from.
+ */
+function unarticleise(str) {
+  return str.replace(unarticleiseRegExp, '').trim();
+}
+
+/**
+ * Sorting function that ignores articles when sorting alphabetically.
+ * @param {string} prev The previous string in the array being sorted.
+ * @param {string} next The next string in the array being sorted.
+ */
+function withoutArticlesSorter(prev, next) {
+  return unarticleise(prev) < unarticleise(next) ? -1 : 1;
+}
+
+const sortedMovies = [...MOVIES];
+sortedMovies.sort(withoutArticlesSorter);
+renderList(sortedMovies);
