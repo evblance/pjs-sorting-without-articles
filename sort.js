@@ -18,6 +18,13 @@ const MOVIES = [
   "The Experts"
 ];
 
+// Store our list of articles to look for excluding from sorting.
+const ARTICLES = ["a", "the", "an", "of"];
+
+// Programatically create a RegExp based on our ARTICLES array to use in 'unarticleising' strings in sorting
+const regExpArticlesStr = `^${ARTICLES.reduce((acc, cur) => acc += (cur + ' |'), '')}`;
+const unarticleiseRegExp = new RegExp(regExpArticlesStr, 'i');
+
 // Store our list item class as a constant
 const LIST_ITEM_CLASSNAME = 'list__item';
 
@@ -38,4 +45,23 @@ function renderList(list) {
   });
 }
 
-renderList(MOVIES);
+/**
+ * Removes an article from the beginning of a string, if present.
+ * @param {string} str The string to remove an article from.
+ */
+function unarticleise(str) {
+  return str.replace(unarticleiseRegExp, '').trim();
+}
+
+/**
+ * Sorting function that ignores articles when sorting alphabetically.
+ * @param {string} prev The previous string in the array being sorted.
+ * @param {string} next The next string in the array being sorted.
+ */
+function withoutArticlesSorter(prev, next) {
+  return unarticleise(prev) < unarticleise(next) ? -1 : 1;
+}
+
+const sortedMovies = [...MOVIES];
+sortedMovies.sort(withoutArticlesSorter);
+renderList(sortedMovies);
